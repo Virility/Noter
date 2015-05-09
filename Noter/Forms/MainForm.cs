@@ -49,7 +49,6 @@ namespace Noter.Forms
                     notesListView.AddNotes(notes);
                 }
 
-                loginTabPage.Hide(mainTabControl);
                 notesTabPage.Show(mainTabControl);
             }
             catch (Exception ex)
@@ -131,10 +130,6 @@ namespace Noter.Forms
 
             foreach (ListViewItem item in notesListView.SelectedItems)
                 notesListView.Items.Remove(item);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
         }
     }
 }

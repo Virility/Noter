@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputPasswordForm));
             this.noterPanel1 = new Noter.Controls.NoterPanel();
+            this.hidePasswordCheckBox = new System.Windows.Forms.CheckBox();
             this.exitButton = new System.Windows.Forms.Button();
             this.loginButton = new System.Windows.Forms.Button();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
@@ -40,6 +41,8 @@
             // 
             // noterPanel1
             // 
+            this.noterPanel1.BackColor = System.Drawing.Color.White;
+            this.noterPanel1.Controls.Add(this.hidePasswordCheckBox);
             this.noterPanel1.Controls.Add(this.exitButton);
             this.noterPanel1.Controls.Add(this.loginButton);
             this.noterPanel1.Controls.Add(this.logoPictureBox);
@@ -50,9 +53,22 @@
             this.noterPanel1.TabIndex = 0;
             this.noterPanel1.Text = "noterPanel1";
             // 
+            // hidePasswordCheckBox
+            // 
+            this.hidePasswordCheckBox.AutoSize = true;
+            this.hidePasswordCheckBox.Checked = true;
+            this.hidePasswordCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.hidePasswordCheckBox.Location = new System.Drawing.Point(35, 164);
+            this.hidePasswordCheckBox.Name = "hidePasswordCheckBox";
+            this.hidePasswordCheckBox.Size = new System.Drawing.Size(109, 17);
+            this.hidePasswordCheckBox.TabIndex = 9;
+            this.hidePasswordCheckBox.Text = "Hide Password";
+            this.hidePasswordCheckBox.UseVisualStyleBackColor = true;
+            this.hidePasswordCheckBox.CheckedChanged += new System.EventHandler(this.hidePasswordCheckBox_CheckedChanged);
+            // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(35, 176);
+            this.exitButton.Location = new System.Drawing.Point(35, 187);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(120, 23);
             this.exitButton.TabIndex = 8;
@@ -62,7 +78,7 @@
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(161, 176);
+            this.loginButton.Location = new System.Drawing.Point(161, 187);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(120, 23);
             this.loginButton.TabIndex = 8;
@@ -74,7 +90,7 @@
             // 
             this.logoPictureBox.BackColor = System.Drawing.Color.White;
             this.logoPictureBox.Image = global::Noter.Properties.Resources.icon;
-            this.logoPictureBox.Location = new System.Drawing.Point(118, 34);
+            this.logoPictureBox.Location = new System.Drawing.Point(118, 22);
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.Size = new System.Drawing.Size(80, 80);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -87,7 +103,7 @@
             this.passwordTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.passwordTextBox.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.passwordTextBox.ForeColor = System.Drawing.Color.Black;
-            this.passwordTextBox.Location = new System.Drawing.Point(35, 135);
+            this.passwordTextBox.Location = new System.Drawing.Point(35, 123);
             this.passwordTextBox.MaxLength = 32767;
             this.passwordTextBox.Multiline = false;
             this.passwordTextBox.Name = "passwordTextBox";
@@ -95,7 +111,7 @@
             this.passwordTextBox.Size = new System.Drawing.Size(246, 35);
             this.passwordTextBox.TabIndex = 4;
             this.passwordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.passwordTextBox.UseSystemPasswordChar = false;
+            this.passwordTextBox.UseSystemPasswordChar = true;
             // 
             // InputPasswordForm
             // 
@@ -109,6 +125,7 @@
             this.Name = "InputPasswordForm";
             this.Text = "Noter - Input Password";
             this.noterPanel1.ResumeLayout(false);
+            this.noterPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -121,5 +138,6 @@
         private Controls.NoterTextBox passwordTextBox;
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.CheckBox hidePasswordCheckBox;
     }
 }

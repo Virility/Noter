@@ -21,12 +21,23 @@ namespace Noter.Forms
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(passwordTextBox.Text))
+            {
+                MessageBox.Show("You must input a password.");
+                return;
+            }
+
             DialogResult = DialogResult.OK;
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void hidePasswordCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            passwordTextBox.UseSystemPasswordChar = hidePasswordCheckBox.Checked;
         }
     }
 }
