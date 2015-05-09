@@ -71,20 +71,12 @@ namespace Noter.Forms
                     return;
 
                 var fileBytes = NoteSerializer.Serialize(notes);
-
-                try
+                using (var inputPasswordForm = new InputPasswordForm())
                 {
-                    using (var inputPasswordForm = new InputPasswordForm())
-                    {
-                        if (inputPasswordForm.ShowDialog() == DialogResult.OK)
-                            fileBytes = Aes.Encrypt(fileBytes, inputPasswordForm.PasswordBytes);
-                    }
+                    if (inputPasswordForm.ShowDialog() == DialogResult.OK)
+                        fileBytes = Aes.Encrypt(fileBytes, inputPasswordForm.PasswordBytes);
                 }
-                catch (CryptographicException)
-                {
-                    // DO SOMETHING HERE
-                }
-
+    
                 File.WriteAllBytes(Config.NoterFile, fileBytes);
             }
             catch (Exception ex)
@@ -95,9 +87,9 @@ namespace Noter.Forms
 
         private void notesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            var hit = notesListView.HitTest(e.Location);
-            if (hit.Item != null)
-                EditNote(hit.Item);
+            var hitInfo = notesListView.HitTest(e.Location);
+            if (hitInfo.Item != null)
+                EditNote(hitInfo.Item);
         }
 
         public static void EditNote(ListViewItem item)
