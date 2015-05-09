@@ -19,6 +19,11 @@ namespace Noter.Forms
             }
         }
 
+        private void passwordTextBox_EnterKeyPressed(object sender, EventArgs e)
+        {
+            okButton.PerformClick();
+        }
+
         private void hidePasswordCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             passwordTextBox.UseSystemPasswordChar = hidePasswordCheckBox.Checked;

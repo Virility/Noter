@@ -14,9 +14,8 @@
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
+            
             base.Dispose(disposing);
         }
 
@@ -89,7 +88,7 @@
             // logoPictureBox
             // 
             this.logoPictureBox.BackColor = System.Drawing.Color.White;
-            this.logoPictureBox.Image = global::Noter.Properties.Resources.icon;
+            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
             this.logoPictureBox.Location = new System.Drawing.Point(118, 22);
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.Size = new System.Drawing.Size(80, 80);
@@ -112,6 +111,7 @@
             this.passwordTextBox.TabIndex = 4;
             this.passwordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.passwordTextBox.UseSystemPasswordChar = true;
+            this.passwordTextBox.EnterKeyPressed += new System.EventHandler(this.passwordTextBox_EnterKeyPressed);
             // 
             // InputPasswordForm
             // 
