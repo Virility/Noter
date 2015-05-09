@@ -96,8 +96,11 @@ namespace Noter.Forms
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (notesListView.SelectedItems.Count != 0)
-                notesListView.Items.Remove(notesListView.SelectedItems[0]);
+            if (notesListView.SelectedItems.Count == 0)
+                return;
+
+            foreach (ListViewItem item in notesListView.SelectedItems)
+                notesListView.Items.Remove(item);
         }
     }
 }
