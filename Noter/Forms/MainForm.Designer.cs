@@ -35,7 +35,7 @@ namespace Noter.Forms
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.netSealTabControl1 = new Noter.Controls.NoterTabControl();
+            this.mainTabControl = new Noter.Controls.NoterTabControl();
             this.notesTabPage = new System.Windows.Forms.TabPage();
             this.notesListView = new System.Windows.Forms.ListView();
             this.titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,8 +45,9 @@ namespace Noter.Forms
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.encryptCheckBox = new System.Windows.Forms.CheckBox();
             this.passwordTextBox = new Noter.Controls.NoterTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.MainContextMenuStrip.SuspendLayout();
-            this.netSealTabControl1.SuspendLayout();
+            this.mainTabControl.SuspendLayout();
             this.notesTabPage.SuspendLayout();
             this.loginTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -63,6 +64,7 @@ namespace Noter.Forms
             // 
             // newToolStripMenuItem
             // 
+            this.newToolStripMenuItem.Image = global::Noter.Properties.Resources.add182;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.newToolStripMenuItem.Text = "New";
@@ -70,6 +72,7 @@ namespace Noter.Forms
             // 
             // removeToolStripMenuItem
             // 
+            this.removeToolStripMenuItem.Image = global::Noter.Properties.Resources.delete81;
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
             this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem.Text = "Remove";
@@ -77,32 +80,35 @@ namespace Noter.Forms
             // 
             // openToolStripMenuItem
             // 
+            this.openToolStripMenuItem.Image = global::Noter.Properties.Resources.draft1;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
-            // netSealTabControl1
+            // mainTabControl
             // 
-            this.netSealTabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.netSealTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.mainTabControl.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.mainTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.netSealTabControl1.Controls.Add(this.notesTabPage);
-            this.netSealTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.netSealTabControl1.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.netSealTabControl1.ItemSize = new System.Drawing.Size(30, 115);
-            this.netSealTabControl1.Location = new System.Drawing.Point(8, 8);
-            this.netSealTabControl1.Multiline = true;
-            this.netSealTabControl1.Name = "netSealTabControl1";
-            this.netSealTabControl1.SelectedIndex = 0;
-            this.netSealTabControl1.Size = new System.Drawing.Size(499, 286);
-            this.netSealTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.netSealTabControl1.TabIndex = 0;
+            this.mainTabControl.Controls.Add(this.loginTabPage);
+            this.mainTabControl.Controls.Add(this.notesTabPage);
+            this.mainTabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.mainTabControl.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this.mainTabControl.ItemSize = new System.Drawing.Size(30, 115);
+            this.mainTabControl.Location = new System.Drawing.Point(8, 8);
+            this.mainTabControl.Multiline = true;
+            this.mainTabControl.Name = "mainTabControl";
+            this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.Size = new System.Drawing.Size(499, 286);
+            this.mainTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.mainTabControl.TabIndex = 0;
             // 
             // notesTabPage
             // 
             this.notesTabPage.BackColor = System.Drawing.Color.White;
+            this.notesTabPage.Controls.Add(this.button1);
             this.notesTabPage.Controls.Add(this.notesListView);
             this.notesTabPage.Location = new System.Drawing.Point(119, 4);
             this.notesTabPage.Name = "notesTabPage";
@@ -197,13 +203,23 @@ namespace Noter.Forms
             this.passwordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.passwordTextBox.UseSystemPasswordChar = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(210, 70);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(110)))), ((int)(((byte)(121)))));
             this.ClientSize = new System.Drawing.Size(514, 302);
-            this.Controls.Add(this.netSealTabControl1);
+            this.Controls.Add(this.mainTabControl);
             this.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
@@ -212,7 +228,7 @@ namespace Noter.Forms
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainContextMenuStrip.ResumeLayout(false);
-            this.netSealTabControl1.ResumeLayout(false);
+            this.mainTabControl.ResumeLayout(false);
             this.notesTabPage.ResumeLayout(false);
             this.loginTabPage.ResumeLayout(false);
             this.loginTabPage.PerformLayout();
@@ -223,7 +239,7 @@ namespace Noter.Forms
 
         #endregion
 
-        private Controls.NoterTabControl netSealTabControl1;
+        private Controls.NoterTabControl mainTabControl;
         private System.Windows.Forms.TabPage notesTabPage;
         private System.Windows.Forms.ListView notesListView;
         private System.Windows.Forms.ColumnHeader titleColumnHeader;
@@ -237,5 +253,6 @@ namespace Noter.Forms
         private ToolStripMenuItem removeToolStripMenuItem;
         private ColumnHeader dateCreatedColumnHeader;
         private Button loginButton;
+        private Button button1;
     }
 }

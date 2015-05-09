@@ -1,9 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 using Noter.Models;
 using Noter.Helpers;
+using Aes = Noter.Helpers.Aes;
 
 namespace Noter.Forms
 {
@@ -27,20 +30,31 @@ namespace Noter.Forms
                 var fileBytes = File.ReadAllBytes(Config.NoterFile);
                 if (fileBytes.Length != 0)
                 {
+                    try
+                    {
+                        using (var inputPasswordForm = new InputPasswordForm())
+                        {
+                            if (inputPasswordForm.ShowDialog() == DialogResult.OK)
+                                fileBytes = Aes.Decrypt(fileBytes, inputPasswordForm.PasswordBytes);
+                        }
+                    }
+                    catch (CryptographicException)
+                    {
+                        if (Misc.AskQuestion(Config.DecryptionFailedError))
+                            File.Create(Config.NoterFile);
+                    }
+
                     var notes = NoteSerializer.Deserialize(fileBytes);
                     Console.WriteLine(notes.Length);
                     notesListView.AddNotes(notes);
                 }
 
-                loginTabPage.Hide(netSealTabControl1);
-                notesTabPage.Show(netSealTabControl1);
+                loginTabPage.Hide(mainTabControl);
+                notesTabPage.Show(mainTabControl);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-
-                if (Misc.AskQuestion(Config.DecryptionFailedError))
-                    File.Create(Config.NoterFile);
             }
         }
 
@@ -54,8 +68,24 @@ namespace Noter.Forms
                     Select(i => i.Tag).
                     Cast<Note>().
                     ToArray();
+                
+                var fileBytes = NoteSerializer.Serialize(notes);
 
-                File.WriteAllBytes(Config.NoterFile, NoteSerializer.Serialize(notes));
+                try
+                {
+                    using (var inputPasswordForm = new InputPasswordForm())
+                    {
+                        if (inputPasswordForm.ShowDialog() == DialogResult.OK)
+                            fileBytes = Aes.Encrypt(fileBytes, inputPasswordForm.PasswordBytes);
+                    }
+                }
+                catch (CryptographicException)
+                {
+                    if (Misc.AskQuestion(Config.DecryptionFailedError))
+                        File.Create(Config.NoterFile);
+                }
+
+                File.WriteAllBytes(Config.NoterFile, fileBytes);
             }
             catch (Exception ex)
             {
@@ -101,6 +131,10 @@ namespace Noter.Forms
 
             foreach (ListViewItem item in notesListView.SelectedItems)
                 notesListView.Items.Remove(item);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

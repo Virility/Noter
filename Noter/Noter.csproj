@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\NoterPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\NoterTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -58,12 +61,19 @@
     <Compile Include="Forms\EditNoteForm.Designer.cs">
       <DependentUpon>EditNoteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\InputPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputPasswordForm.Designer.cs">
+      <DependentUpon>InputPasswordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Aes.cs" />
     <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\Misc.cs" />
@@ -75,6 +85,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\EditNoteForm.resx">
       <DependentUpon>EditNoteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputPasswordForm.resx">
+      <DependentUpon>InputPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -102,6 +115,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\draft1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete81.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add182.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Credits.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
