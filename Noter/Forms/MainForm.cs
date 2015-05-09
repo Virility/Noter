@@ -63,7 +63,6 @@ namespace Noter.Forms
             {
                 var notes = notesListView.Items.
                     Cast<ListViewItem>().
-                    Where(i => i.Tag is Note).
                     Select(i => i.Tag).
                     Cast<Note>().
                     ToArray();
@@ -83,7 +82,7 @@ namespace Noter.Forms
                 }
                 catch (CryptographicException)
                 {
-                    
+                    // DO SOMETHING HERE
                 }
 
                 File.WriteAllBytes(Config.NoterFile, fileBytes);
@@ -132,11 +131,6 @@ namespace Noter.Forms
 
             foreach (ListViewItem item in notesListView.SelectedItems)
                 notesListView.Items.Remove(item);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
