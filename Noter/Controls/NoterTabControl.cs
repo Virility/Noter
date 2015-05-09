@@ -8,9 +8,6 @@ namespace Noter.Controls
 {
     public sealed class NoterTabControl : TabControl
     {
-        private static readonly Font TabFont
-            = new Font("Verdana", 7.5f, FontStyle.Bold);
-
         private readonly Pen _p1;
         private readonly Pen _p2;
         private readonly Pen _p3;
@@ -18,6 +15,7 @@ namespace Noter.Controls
         private readonly SolidBrush _b1;
         private readonly SolidBrush _b2;
 
+        private readonly Font _tabFont;
         private readonly StringFormat _stringFormat;
 
         public NoterTabControl()
@@ -36,7 +34,8 @@ namespace Noter.Controls
 
             _b1 = new SolidBrush(Color.FromArgb(80, 90, 100));
             _b2 = new SolidBrush(Color.FromArgb(210, 220, 230));
-
+            
+            _tabFont = new Font("Verdana", 7.5f, FontStyle.Bold);
             _stringFormat = new StringFormat
                 {LineAlignment = StringAlignment.Center};
         }
@@ -81,11 +80,11 @@ namespace Noter.Controls
                 offsetTabRectangle.X += 1;
 
                 var tabText = tabPage.Text.ToUpper();
-                g.DrawString(tabText, TabFont, Brushes.Black, offsetTabRectangle, _stringFormat);
-                g.DrawString(tabText, TabFont, (i == SelectedIndex) ? Brushes.White : _b2, tabRectangle, _stringFormat);
+                g.DrawString(tabText, _tabFont, Brushes.Black, offsetTabRectangle, _stringFormat);
+                g.DrawString(tabText, _tabFont, (i == SelectedIndex) ? Brushes.White : _b2, tabRectangle, _stringFormat);
             }
 
-            using (graphicsPath = RoundRect.Round(itemHeight, 0, Width - itemHeight - 1, Height - 1, 7))
+            using (graphicsPath = RoundRect.Round(itemHeight, 0, Width - itemHeight - 1, Height - 1, 15))
             {
                 g.FillPath(Brushes.White, graphicsPath);
                 g.DrawPath(_p1, graphicsPath);
