@@ -49,6 +49,7 @@ namespace Noter.Controls
             g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
+            GraphicsPath graphicsPath;
             var itemHeight = ItemSize.Height + 2;
 
             for (var i = 0; i < TabCount; i++) 
@@ -63,13 +64,13 @@ namespace Noter.Controls
 
                 if (i == SelectedIndex)
                 {
-                    using (var graphicsPath = RoundRect.Round(tabRectangle, 7))
+                    using (graphicsPath = RoundRect.Round(tabRectangle, 7))
                     {
                         g.FillPath(_b1, graphicsPath);
                         g.DrawPath(_p2, graphicsPath);
                     }
 
-                    using (var graphicsPath = RoundRect.Round(tabRectangle.X + 2, tabRectangle.Y + 3, tabRectangle.Width, tabRectangle.Height - 6, 7))
+                    using (graphicsPath = RoundRect.Round(tabRectangle.X + 2, tabRectangle.Y + 3, tabRectangle.Width, tabRectangle.Height - 6, 7))
                         g.DrawPath(_p3, graphicsPath);
                 }
 
@@ -84,7 +85,7 @@ namespace Noter.Controls
                 g.DrawString(tabText, TabFont, (i == SelectedIndex) ? Brushes.White : _b2, tabRectangle, _stringFormat);
             }
 
-            using (var graphicsPath = RoundRect.Round(itemHeight, 0, Width - itemHeight - 1, Height - 1, 7))
+            using (graphicsPath = RoundRect.Round(itemHeight, 0, Width - itemHeight - 1, Height - 1, 7))
             {
                 g.FillPath(Brushes.White, graphicsPath);
                 g.DrawPath(_p1, graphicsPath);

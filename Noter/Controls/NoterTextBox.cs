@@ -17,83 +17,77 @@ namespace Noter.Controls
     [DefaultEvent("TextChanged")]
     public sealed class NoterTextBox : Control
     {
-        #region "Public Declares"
-
         public event EventHandler EnterKeyPressed = delegate { };
 
-        private Pen RegBorder;
-        private SolidBrush RegBG;
-        private Rectangle CBounds;
-        private GraphicsPath RoundedRec;
-        private Graphics G;
+        private readonly Pen _p1;
+        private readonly SolidBrush _b1;
+        private readonly TextBox _baseTextBox;
 
         private HorizontalAlignment _textAlign = HorizontalAlignment.Left;
-        private int _maxLength = 32767;
-        private bool _readOnly;
-        private bool _useSystemPasswordChar;
-        private bool _multiline;
-        public TextBox Base;
-
         public HorizontalAlignment TextAlign
         {
             get { return _textAlign; }
             set
             {
                 _textAlign = value;
-                if (Base != null)
-                    Base.TextAlign = value;
+                if (_baseTextBox != null)
+                    _baseTextBox.TextAlign = value;
             }
         }
 
+        private int _maxLength = 32767;
         public int MaxLength
         {
             get { return _maxLength; }
             set
             {
                 _maxLength = value;
-                if (Base != null)
-                    Base.MaxLength = value;
+                if (_baseTextBox != null)
+                    _baseTextBox.MaxLength = value;
             }
         }
 
+        private bool _readOnly;
         public bool ReadOnly
         {
             get { return _readOnly; }
             set
             {
                 _readOnly = value;
-                if (Base != null)
-                    Base.ReadOnly = value;
+                if (_baseTextBox != null)
+                    _baseTextBox.ReadOnly = value;
             }
         }
 
+        private bool _useSystemPasswordChar;
         public bool UseSystemPasswordChar
         {
             get { return _useSystemPasswordChar; }
             set
             {
                 _useSystemPasswordChar = value;
-                if (Base != null)
-                    Base.UseSystemPasswordChar = value;
+                if (_baseTextBox != null)
+                    _baseTextBox.UseSystemPasswordChar = value;
             }
         }
 
+        private bool _multiline;
         public bool Multiline
         {
             get { return _multiline; }
             set
             {
                 _multiline = value;
-                if (Base == null)
+                if (_baseTextBox == null)
                     return;
 
-                Base.Multiline = value;
+                _baseTextBox.Multiline = value;
 
                 if (value)
-                    Base.Height = Height - 16;
+                    _baseTextBox.Height = Height - 16;
                 else
                 {
-                    Height = Base.Height + 16;
+                    Height = _baseTextBox.Height + 16;
                     Size = new Size(Size.Width, 35);
                 }
             }
@@ -105,31 +99,32 @@ namespace Noter.Controls
             set
             {
                 base.Text = value;
-                if (Base != null)
-                    Base.Text = value;
+                if (_baseTextBox != null)
+                    _baseTextBox.Text = value;
             }
         }
 
         protected override void OnHandleCreated(EventArgs e)
         {
-            if (!Controls.Contains(Base))
-                Controls.Add(Base);
+            if (!Controls.Contains(_baseTextBox))
+                Controls.Add(_baseTextBox);
 
             base.OnHandleCreated(e);
         }
-
-        #endregion
 
         public NoterTextBox()
         {
             SetStyle((ControlStyles)139286, true);
             SetStyle(ControlStyles.Selectable, true);
 
-            Font = new Font("Segoe UI", 10);
+            Font = new Font("Verdana", 10);
             ForeColor = Color.Black;
             Cursor = Cursors.IBeam;
 
-            Base = new TextBox
+            _p1 = Pens.Black;
+            _b1 = new SolidBrush(Color.White);
+
+            _baseTextBox = new TextBox
             {
                 Font = Font,
                 Text = Text,
@@ -143,41 +138,39 @@ namespace Noter.Controls
             };
 
             if (_multiline)
-                Base.Height = Height - 16;
+                _baseTextBox.Height = Height - 16;
             else
-                Height = Base.Height + 16;
+                Height = _baseTextBox.Height + 16;
 
-            Base.TextChanged += OnBaseTextChanged;
-            Base.KeyDown += OnBaseKeyDown;
-
-            RegBorder = Pens.Black;
-            RegBG = new SolidBrush(Color.White);
+            _baseTextBox.TextChanged += OnBaseTextChanged;
+            _baseTextBox.KeyDown += OnBaseKeyDown;
         }
 
-        protected override void OnPaint(PaintEventArgs pevent)
+        protected override void OnPaint(PaintEventArgs e)
         {
-            G = pevent.Graphics;
-            G.SmoothingMode = SmoothingMode.HighQuality;
-            CBounds = new Rectangle(0, 0, Width - 1, Height - 2);
-            RoundedRec = RoundRect.Round(CBounds, 2);
+            var g = e.Graphics;
+            g.Clear(BackColor);
+            g.SmoothingMode = SmoothingMode.HighQuality;
 
-            G.Clear(BackColor);
-            G.DrawPath(RegBorder, RoundedRec);
-            G.FillPath(RegBG, RoundedRec);
+            var borderRectangle = new Rectangle(0, 0, Width - 1, Height - 2);
+            var roundedBorderPath = RoundRect.Round(borderRectangle, 2);
+
+            g.DrawPath(_p1, roundedBorderPath);
+            g.FillPath(_b1, roundedBorderPath);
         }
 
         #region "Misc Overrides"
 
         private void OnBaseTextChanged(object s, EventArgs e)
         {
-            Text = Base.Text;
+            Text = _baseTextBox.Text;
         }
 
         private void OnBaseKeyDown(object s, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.A)
             {
-                Base.SelectAll();
+                _baseTextBox.SelectAll();
                 e.SuppressKeyPress = true;
             }
             else if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
@@ -188,23 +181,23 @@ namespace Noter.Controls
         {
             if (!_multiline)
                 Size = new Size(Size.Width, 35);
-            Base.Location = new Point(8, 8);
+            _baseTextBox.Location = new Point(8, 8);
 
-            Base.Width = Width - 16;
-            Base.Height = Height - 16;
+            _baseTextBox.Width = Width - 16;
+            _baseTextBox.Height = Height - 16;
 
             base.OnResize(e);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            Base.Focus();
+            _baseTextBox.Focus();
             base.OnMouseDown(e);
         }
 
         protected override void OnEnter(EventArgs e)
         {
-            Base.Focus();
+            _baseTextBox.Focus();
             Invalidate();
             base.OnEnter(e);
         }

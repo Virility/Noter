@@ -32,7 +32,7 @@
             this.noterPanel1 = new Noter.Controls.NoterPanel();
             this.hidePasswordCheckBox = new System.Windows.Forms.CheckBox();
             this.exitButton = new System.Windows.Forms.Button();
-            this.loginButton = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.passwordTextBox = new Noter.Controls.NoterTextBox();
             this.noterPanel1.SuspendLayout();
@@ -44,7 +44,7 @@
             this.noterPanel1.BackColor = System.Drawing.Color.White;
             this.noterPanel1.Controls.Add(this.hidePasswordCheckBox);
             this.noterPanel1.Controls.Add(this.exitButton);
-            this.noterPanel1.Controls.Add(this.loginButton);
+            this.noterPanel1.Controls.Add(this.okButton);
             this.noterPanel1.Controls.Add(this.logoPictureBox);
             this.noterPanel1.Controls.Add(this.passwordTextBox);
             this.noterPanel1.Location = new System.Drawing.Point(12, 12);
@@ -76,15 +76,15 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // loginButton
+            // okButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(161, 187);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(120, 23);
-            this.loginButton.TabIndex = 8;
-            this.loginButton.Text = "Login..";
-            this.loginButton.UseVisualStyleBackColor = true;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            this.okButton.Location = new System.Drawing.Point(161, 187);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(120, 23);
+            this.okButton.TabIndex = 8;
+            this.okButton.Text = "OK..";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // logoPictureBox
             // 
@@ -121,8 +121,10 @@
             this.ClientSize = new System.Drawing.Size(340, 257);
             this.Controls.Add(this.noterPanel1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InputPasswordForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Noter - Input Password";
             this.noterPanel1.ResumeLayout(false);
             this.noterPanel1.PerformLayout();
@@ -136,7 +138,7 @@
         private Controls.NoterPanel noterPanel1;
         private System.Windows.Forms.PictureBox logoPictureBox;
         private Controls.NoterTextBox passwordTextBox;
-        private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.CheckBox hidePasswordCheckBox;
     }

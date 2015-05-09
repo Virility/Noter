@@ -9,7 +9,7 @@ namespace Noter.Helpers
 
         public const string ApplicationName = "Noter";
         public const string NewNoteTitle = "New Note!";
-        public const string DecryptionFailedError = "Decryption failed. Would you like to create a new Noter file?";
+        public const string DecryptionFailedError = "Decryption failed. Would you like to close the application? Saying no will result in the deletion of your previous notes file.";
 
         public static string NoterFile
         {

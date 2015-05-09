@@ -10,7 +10,7 @@ namespace Noter.Helpers
                 = MessageBox.Show(question, Config.ApplicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button1);
 
-            return (result == DialogResult.OK);
+            return (result == DialogResult.Yes);
         }
     }
 }

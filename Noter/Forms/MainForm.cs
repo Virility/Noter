@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
 using Noter.Models;
 using Noter.Helpers;
@@ -37,16 +36,17 @@ namespace Noter.Forms
                             if (inputPasswordForm.ShowDialog() == DialogResult.OK)
                                 fileBytes = Aes.Decrypt(fileBytes, inputPasswordForm.PasswordBytes);
                         }
+
+                        var notes = NoteSerializer.Deserialize(fileBytes);
+                        notesListView.AddNotes(notes);
                     }
                     catch (CryptographicException)
                     {
                         if (Misc.AskQuestion(Config.DecryptionFailedError))
-                            File.Create(Config.NoterFile);
+                            Environment.Exit(0);
+                        else
+                            File.Delete(Config.NoterFile);
                     }
-
-                    var notes = NoteSerializer.Deserialize(fileBytes);
-                    Console.WriteLine(notes.Length);
-                    notesListView.AddNotes(notes);
                 }
 
                 notesTabPage.Show(mainTabControl);
@@ -67,7 +67,10 @@ namespace Noter.Forms
                     Select(i => i.Tag).
                     Cast<Note>().
                     ToArray();
-                
+
+                if (notes.Length == 0)
+                    return;
+
                 var fileBytes = NoteSerializer.Serialize(notes);
 
                 try
@@ -80,8 +83,7 @@ namespace Noter.Forms
                 }
                 catch (CryptographicException)
                 {
-                    if (Misc.AskQuestion(Config.DecryptionFailedError))
-                        File.Create(Config.NoterFile);
+                    
                 }
 
                 File.WriteAllBytes(Config.NoterFile, fileBytes);
@@ -130,6 +132,11 @@ namespace Noter.Forms
 
             foreach (ListViewItem item in notesListView.SelectedItems)
                 notesListView.Items.Remove(item);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

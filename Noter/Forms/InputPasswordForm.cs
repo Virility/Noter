@@ -6,6 +6,11 @@ namespace Noter.Forms
 {
     public partial class InputPasswordForm : Form
     {
+        public InputPasswordForm()
+        {
+            InitializeComponent();
+        }
+
         public byte[] PasswordBytes
         {
             get
@@ -14,12 +19,17 @@ namespace Noter.Forms
             }
         }
 
-        public InputPasswordForm()
+        private void hidePasswordCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            InitializeComponent();
+            passwordTextBox.UseSystemPasswordChar = hidePasswordCheckBox.Checked;
         }
 
-        private void loginButton_Click(object sender, EventArgs e)
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(passwordTextBox.Text))
             {
@@ -28,16 +38,6 @@ namespace Noter.Forms
             }
 
             DialogResult = DialogResult.OK;
-        }
-
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-        private void hidePasswordCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            passwordTextBox.UseSystemPasswordChar = hidePasswordCheckBox.Checked;
         }
     }
 }
