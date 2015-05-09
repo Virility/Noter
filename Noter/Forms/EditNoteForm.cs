@@ -1,30 +1,11 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Noter.Models;
 
 namespace Noter.Forms
 {
     public sealed partial class EditNoteForm : Form
     {
-        public string Title
-        {
-            get { return _note.Title; }
-            set
-            {
-                _note.Title = value;
-                titleTextBox.Text = value;
-            }
-        }
-
-        public string Data
-        {
-            get { return _note.Data; }
-            set
-            {
-                _note.Data = value;
-                dataTextBox.Text = value;
-            }
-        }
-
         private Note _note;
         public Note Note
         {
@@ -32,6 +13,7 @@ namespace Noter.Forms
             set
             {
                 _note = value;
+
                 titleTextBox.Text = value.Title;
                 dataTextBox.Text = value.Data;
             }
@@ -51,15 +33,16 @@ namespace Noter.Forms
                 return editNoteForm.ShowDialog() == DialogResult.OK ? editNoteForm.Note : note;
         }
 
-        private void okButton_Click(object sender, System.EventArgs e)
+        private void okButton_Click(object sender, EventArgs e)
         {
-            Title = titleTextBox.Text;
-            Data = dataTextBox.Text;
+            var title = titleTextBox.Text;
+            var data = dataTextBox.Text;
 
+            _note = new Note(title, data, _note.Created);
             DialogResult = DialogResult.OK;
         }
 
-        private void cancelButton_Click(object sender, System.EventArgs e)
+        private void cancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }

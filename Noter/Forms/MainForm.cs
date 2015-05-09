@@ -76,6 +76,7 @@ namespace Noter.Forms
             {
                 var editedNote = EditNoteForm.Open((Note)item.Tag);
                 item.Text = editedNote.Title;
+                item.Tag = editedNote;
             }
         }
 
