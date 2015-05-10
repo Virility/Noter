@@ -2,10 +2,13 @@
 -------
 
 Google (http://www.flaticon.com/):
-add182
-delete81
-draft1
+Resources\add182.png
+Resources\delete81.png
+Resources\draft1.png
 
 AeonHack:
-TabControl concept
-CreateRound function
+Controls\NoterTabControl.cs (Concept)
+Helpers\RoundRect.cs
+
+Icon (http://www.iconarchive.com/show/100-flat-icons-by-graphicloads/note-icon.html):
+icon.ico
