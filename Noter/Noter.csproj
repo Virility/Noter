@@ -99,7 +99,6 @@
     <Compile Include="Helpers\RoundRect.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\EditNoteForm.resx">
       <DependentUpon>EditNoteForm.cs</DependentUpon>
