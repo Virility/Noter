@@ -29,5 +29,10 @@ namespace Noter.Helpers
             var items = notes.Select(note => note.ToListViewItem());
             listView.Items.AddRange(items.ToArray());
         }
+
+        public static bool IsNull(this byte[] input)
+        {
+            return (input == null || input.Length == 0);
+        }
     }
 }

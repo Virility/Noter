@@ -53,7 +53,7 @@ namespace Noter.Forms
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ShowExceptionForm.Open(ex);
             }
         }
 
@@ -76,12 +76,12 @@ namespace Noter.Forms
                     if (inputPasswordForm.ShowDialog() == DialogResult.OK)
                         fileBytes = Aes.Encrypt(fileBytes, inputPasswordForm.PasswordBytes);
                 }
-    
+
                 File.WriteAllBytes(Config.NoterFile, fileBytes);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ShowExceptionForm.Open(ex);
             }
         }
 
