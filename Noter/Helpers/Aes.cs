@@ -7,28 +7,32 @@ namespace Noter.Helpers
     {
         public static byte[] Encrypt(byte[] data, byte[] key)
         {
-            if (input.IsNull()) throw new ArgumentNullException("input");
+            if (data.IsNull()) throw new ArgumentNullException("data");
             if (key.IsNull()) throw new ArgumentNullException("key");
 
-            using (var sha256Provider = new SHA256Managed())
-                key = sha256Provider.ComputeHash(key);
+            key = GetSha256Hash(key);
 
-            using (var aesProvider = new AesCryptoServiceProvider())
-            using (var encrypter = aesProvider.CreateEncryptor(key, Config.PrimeNumbers))
-                return encrypter.TransformFinalBlock(input, 0, input.Length);
+            using (var provider = new AesCryptoServiceProvider())
+            using (var encrypter = provider.CreateEncryptor(key, Config.PrimeNumbers))
+                return encrypter.TransformFinalBlock(data, 0, data.Length);
         }
 
-        public static byte[] Decrypt(byte[] input, byte[] key)
+        public static byte[] Decrypt(byte[] data, byte[] key)
         {
-            if (input.IsNull()) throw new ArgumentNullException("input");
+            if (data.IsNull()) throw new ArgumentNullException("data");
             if (key.IsNull()) throw new ArgumentNullException("key");
 
-            using (var sha256Provider = new SHA256Managed())
-                key = sha256Provider.ComputeHash(key);
+            key = GetSha256Hash(key);
 
-            using (var aesProvider = new AesCryptoServiceProvider())
-            using (var decrypter = aesProvider.CreateDecryptor(key, Config.PrimeNumbers))
-                return decrypter.TransformFinalBlock(input, 0, input.Length);
+            using (var provider = new AesCryptoServiceProvider())
+            using (var decrypter = provider.CreateDecryptor(key, Config.PrimeNumbers))
+                return decrypter.TransformFinalBlock(data, 0, data.Length);
+        }
+        
+        private static byte[] GetSha256Hash(byte[] key)
+        {
+            using (var provider = new SHA256CryptoServiceProvider())
+                return provider.ComputeHash(key);
         }
     }
 }
