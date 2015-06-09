@@ -5,29 +5,29 @@ namespace Noter.Helpers
 {
     public static class Aes
     {
-        public static byte[] Encrypt(byte[] input, byte[] password)
+        public static byte[] Encrypt(byte[] data, byte[] key)
         {
             if (input.IsNull()) throw new ArgumentNullException("input");
-            if (password.IsNull()) throw new ArgumentNullException("password");
+            if (key.IsNull()) throw new ArgumentNullException("key");
 
             using (var sha256Provider = new SHA256Managed())
-                password = sha256Provider.ComputeHash(password);
+                key = sha256Provider.ComputeHash(key);
 
             using (var aesProvider = new AesCryptoServiceProvider())
-            using (var encrypter = aesProvider.CreateEncryptor(password, Config.PrimeNumbers))
+            using (var encrypter = aesProvider.CreateEncryptor(key, Config.PrimeNumbers))
                 return encrypter.TransformFinalBlock(input, 0, input.Length);
         }
 
-        public static byte[] Decrypt(byte[] input, byte[] password)
+        public static byte[] Decrypt(byte[] input, byte[] key)
         {
             if (input.IsNull()) throw new ArgumentNullException("input");
-            if (password.IsNull()) throw new ArgumentNullException("password");
+            if (key.IsNull()) throw new ArgumentNullException("key");
 
             using (var sha256Provider = new SHA256Managed())
-                password = sha256Provider.ComputeHash(password);
+                key = sha256Provider.ComputeHash(key);
 
             using (var aesProvider = new AesCryptoServiceProvider())
-            using (var decrypter = aesProvider.CreateDecryptor(password, Config.PrimeNumbers))
+            using (var decrypter = aesProvider.CreateDecryptor(key, Config.PrimeNumbers))
                 return decrypter.TransformFinalBlock(input, 0, input.Length);
         }
     }
