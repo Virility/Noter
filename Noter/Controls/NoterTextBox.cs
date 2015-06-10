@@ -30,8 +30,7 @@ namespace Noter.Controls
             set
             {
                 _textAlign = value;
-                if (_baseTextBox != null)
-                    _baseTextBox.TextAlign = value;
+                _baseTextBox.TextAlign = value;
             }
         }
 
@@ -42,8 +41,7 @@ namespace Noter.Controls
             set
             {
                 _maxLength = value;
-                if (_baseTextBox != null)
-                    _baseTextBox.MaxLength = value;
+                _baseTextBox.MaxLength = value;
             }
         }
 
@@ -54,8 +52,7 @@ namespace Noter.Controls
             set
             {
                 _readOnly = value;
-                if (_baseTextBox != null)
-                    _baseTextBox.ReadOnly = value;
+                _baseTextBox.ReadOnly = value;
             }
         }
 
@@ -66,8 +63,7 @@ namespace Noter.Controls
             set
             {
                 _useSystemPasswordChar = value;
-                if (_baseTextBox != null)
-                    _baseTextBox.UseSystemPasswordChar = value;
+                _baseTextBox.UseSystemPasswordChar = value;
             }
         }
 
@@ -99,8 +95,7 @@ namespace Noter.Controls
             set
             {
                 base.Text = value;
-                if (_baseTextBox != null)
-                    _baseTextBox.Text = value;
+                _baseTextBox.Text = value;
             }
         }
 
