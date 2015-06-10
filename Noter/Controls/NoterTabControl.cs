@@ -20,7 +20,7 @@ namespace Noter.Controls
 
         public NoterTabControl()
         {
-            SetStyle((ControlStyles)139286, true);
+            SetStyle((ControlStyles) 139286, true);
             SetStyle(ControlStyles.Selectable, false);
 
             SizeMode = TabSizeMode.Fixed;
@@ -37,7 +37,7 @@ namespace Noter.Controls
             
             _tabFont = new Font("Verdana", 7.5f, FontStyle.Bold);
             _stringFormat = new StringFormat
-                {LineAlignment = StringAlignment.Center};
+                { LineAlignment = StringAlignment.Center };
         }
 
         protected override void OnPaint(PaintEventArgs e)
