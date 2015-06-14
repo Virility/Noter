@@ -53,7 +53,7 @@ namespace Noter.Forms
             }
             catch (Exception ex)
             {
-                ShowExceptionForm.Open(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -81,7 +81,7 @@ namespace Noter.Forms
             }
             catch (Exception ex)
             {
-                ShowExceptionForm.Open(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
