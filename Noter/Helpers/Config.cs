@@ -13,6 +13,7 @@ namespace Noter.Helpers
             = "Decryption failed. Would you like to close Noter? " +
               "Pressing no will result in the deletion of your previous " +
               "notes.";
+              
         public readonly static string NoterFile =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), FileName);
 
