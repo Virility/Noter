@@ -136,17 +136,11 @@
     <None Include="Resources\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\draft1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\delete81.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\add182.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Credits.txt" />
     <Content Include="icon.ico" />
+    <None Include="Resources\application_delete.png" />
+    <None Include="Resources\application_add.png" />
+    <None Include="Resources\application_edit.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
