@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace Noter.Helpers
+namespace Noter.UI.Helpers
 {
     public static class RoundRect
     {

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using Noter.Helpers;
+using Noter.Core.Helpers;
+using Noter.UI.Controls;
 
-namespace Noter.Models
+namespace Noter.Core.Models
 {
     public class Note
     {
@@ -21,10 +22,7 @@ namespace Noter.Models
 
         public ListViewItem ToListViewItem()
         {
-            return new ListViewItem(new[]
-            {
-                Title, Created.ToString("MM/dd/yy hh:mm tt")
-            }) { Tag = this };
+            return new NoteViewItem(this);
         }
 
         public static Note NewNote()

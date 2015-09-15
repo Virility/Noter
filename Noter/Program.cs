@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Noter.Forms;
+using Noter.UI.Forms;
 
 namespace Noter
 {

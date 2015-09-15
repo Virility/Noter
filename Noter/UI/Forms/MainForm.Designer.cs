@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
+using Noter.UI.Controls;
 
-namespace Noter.Forms
+namespace Noter.UI.Forms
 {
     partial class MainForm
     {
@@ -37,7 +38,7 @@ namespace Noter.Forms
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.mainTabControl = new Noter.Controls.NoterTabControl();
+            this.mainTabControl = new NoterTabControl();
             this.notesTabPage = new System.Windows.Forms.TabPage();
             this.notesListView = new System.Windows.Forms.ListView();
             this.titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));

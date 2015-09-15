@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
+using Noter.Core.Extensions;
 
-namespace Noter.Helpers
+namespace Noter.Core.Helpers
 {
     public static class Aes
     {
@@ -35,4 +36,4 @@ namespace Noter.Helpers
                 return provider.ComputeHash(key);
         }
     }
-}
+}                     

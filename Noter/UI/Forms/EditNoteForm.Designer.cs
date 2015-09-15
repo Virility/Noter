@@ -1,4 +1,6 @@
-﻿namespace Noter.Forms
+﻿using Noter.UI.Controls;
+
+namespace Noter.UI.Forms
 {
     sealed partial class EditNoteForm
     {
@@ -30,8 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditNoteForm));
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
-            this.dataTextBox = new Noter.Controls.NoterTextBox();
-            this.titleTextBox = new Noter.Controls.NoterTextBox();
+            this.dataTextBox = new NoterTextBox();
+            this.titleTextBox = new NoterTextBox();
             this.SuspendLayout();
             // 
             // cancelButton

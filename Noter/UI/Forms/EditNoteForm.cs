@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using Noter.Models;
+using Noter.Core.Models;
 
-namespace Noter.Forms
+namespace Noter.UI.Forms
 {
     public sealed partial class EditNoteForm : Form
     {

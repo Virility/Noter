@@ -3,11 +3,13 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Windows.Forms;
-using Noter.Models;
-using Noter.Helpers;
-using Aes = Noter.Helpers.Aes;
+using Noter.Core.Extensions;
+using Noter.Core.Helpers;
+using Noter.Core.Models;
+using Noter.UI.Controls;
+using Aes = Noter.Core.Helpers.Aes;
 
-namespace Noter.Forms
+namespace Noter.UI.Forms
 {
     public partial class MainForm : Form
     {
@@ -42,14 +44,12 @@ namespace Noter.Forms
                     }
                     catch (CryptographicException)
                     {
-                        if (Misc.AskQuestion(Config.DecryptionFailedError))
+                        if (QuestionAsker.Ask(Config.DecryptionFailedError))
                             Environment.Exit(0);
                         else
                             File.Delete(Config.NoterFile);
                     }
-                }
-
-                notesTabPage.Show(mainTabControl);
+                }                                  
             }
             catch (Exception ex)
             {
@@ -62,9 +62,8 @@ namespace Noter.Forms
             try
             {
                 var notes = notesListView.Items.
-                    Cast<ListViewItem>().
-                    Select(i => i.Tag).
-                    Cast<Note>().
+                    Cast<NoteViewItem>().
+                    Select(i => i.Note). 
                     ToArray();
 
                 if (notes.Length == 0)
@@ -89,31 +88,26 @@ namespace Noter.Forms
         {
             var hitInfo = notesListView.HitTest(e.Location);
             if (hitInfo.Item != null)
-                EditNote(hitInfo.Item);
+                EditNote((NoteViewItem) hitInfo.Item);
         }
 
-        public static void EditNote(ListViewItem item)
-        {
-            if (item.Tag != null && item.Tag.GetType() == typeof(Note))
-            {
-                var editedNote = EditNoteForm.Open((Note)item.Tag);
-                item.Text = editedNote.Title;
-                item.Tag = editedNote;
-            }
+        public static void EditNote(NoteViewItem item)
+        {        
+            item.Note = EditNoteForm.Open(item.Note);
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var item = Note.NewNote().ToListViewItem();
+        {                                
+            var note = Note.NewNote();
 
-            notesListView.Items.Add(item);
-            EditNote(item);
+            notesListView.AddNote(note);
+            EditNote((NoteViewItem) note.ToListViewItem());
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (notesListView.SelectedItems.Count != 0)
-                EditNote(notesListView.SelectedItems[0]);
+                EditNote((NoteViewItem) notesListView.SelectedItems[0]);
         }
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)

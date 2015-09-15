@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Noter.Helpers
+namespace Noter.Core.Helpers
 {
     public static class Config
     {
@@ -23,4 +23,4 @@ namespace Noter.Helpers
             23, 29, 31, 37, 41, 43, 47, 53
         };
     }
-}
+}              

@@ -2,7 +2,7 @@
 using System.Text;
 using System.Windows.Forms;
 
-namespace Noter.Forms
+namespace Noter.UI.Forms
 {
     public partial class InputPasswordForm : Form
     {
@@ -38,7 +38,7 @@ namespace Noter.Forms
         {
             if (string.IsNullOrWhiteSpace(passwordTextBox.Text))
             {
-                MessageBox.Show("You must input a password.");
+                MessageBox.Show(@"You must input a password.");
                 return;
             }
 

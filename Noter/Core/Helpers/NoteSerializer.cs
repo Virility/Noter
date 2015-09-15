@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using Noter.Models;
+using Noter.Core.Models;
 
-namespace Noter.Helpers
+namespace Noter.Core.Helpers
 {
     public static class NoteSerializer
     {

@@ -1,11 +1,10 @@
-﻿using System.ComponentModel;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Windows.Forms;
-using Noter.Helpers;
+using Noter.UI.Helpers;
 
-namespace Noter.Controls
+namespace Noter.UI.Controls
 {
     public class NoterPanel : ContainerControl
     {

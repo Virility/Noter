@@ -1,4 +1,6 @@
-﻿namespace Noter.Forms
+﻿using Noter.UI.Controls;
+
+namespace Noter.UI.Forms
 {
     partial class InputPasswordForm
     {
@@ -28,12 +30,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputPasswordForm));
-            this.noterPanel1 = new Noter.Controls.NoterPanel();
+            this.noterPanel1 = new NoterPanel();
             this.hidePasswordCheckBox = new System.Windows.Forms.CheckBox();
             this.exitButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
-            this.passwordTextBox = new Noter.Controls.NoterTextBox();
+            this.passwordTextBox = new NoterTextBox();
             this.noterPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
